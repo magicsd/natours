@@ -1,0 +1,72 @@
+.btn {
+  &:link, &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    backface-visibility: hidden;
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    /* x y blur color*/
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scale(1.4, 1.6);
+      opacity: 0;
+    }
+
+  }
+
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+
+  }
+
+  &::after {
+    /* Псевдоэлемент, появляется за элементом.
+    content, display указать обязательно
+    рассматривается как дочерний от .btn */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* Относительно элемента с position: relative
+    первого, который найдет среди родителей
+    в этом случае за кнопкой*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Определяет позицию элемента, если они накладываются */
+    z-index: -1;
+    /* Ставится всегда элемент в initial state */
+    transition: all .4s;
+  }
+
+    /* Псевдоэлемент after только когда btn в позиции hover */
+
+
+  &--animated {
+    animation: 0.5s moveInButton ease-out .75s;
+    /* Автоматически применяет свойства анимации при 0%
+    до начала анимации */
+    animation-fill-mode: backwards;
+  }
+
+}
